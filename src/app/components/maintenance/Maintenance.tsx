@@ -4,14 +4,14 @@ import { Vehicle } from "@/app/types/vehicles";
 export default function Maintenance({ vehicle }: { vehicle: Vehicle | null }) {
     const hasNoMaintenance = !vehicle?.maintenances || vehicle.maintenances.length === 0
     return (
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 md:w-full">
             <div className="space-y-3">
                 <h2 className="text-lg front-semibold">Manutenções -- </h2>
                 <div className="flex items-center justify-between mb-4">
                     {hasNoMaintenance ?
                         (<div className="p-6 bg-white rounded-lg text-slate-500">Nenhuma manutenção registrada. Crie a primeira!</div>)
                         :
-                        (<div className="grid gap-3 w-full max-h-[220px] overflow-y-auto">
+                        (<div className="grid gap-3 w-full max-h-[15rem] md:max-h-[16rem] overflow-y-auto">
                             {vehicle.maintenances.map((maintenance) => (
                                 <div
                                     key={maintenance.id}

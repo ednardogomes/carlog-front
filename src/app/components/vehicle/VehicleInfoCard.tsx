@@ -8,9 +8,9 @@ export default function VehicleInfoCard(
     { vehicle, loading, maintenances }: { vehicle: Vehicle | null, loading: boolean | null, maintenances: Maintenances[] | null }) {
     console.log(vehicle?.maintenances?.[0]);
     return (
-        <div className="flex flex-col gap-3 w-full h-[700px] bg-white p-5 rounded-b-2xl">
+        <div className="flex flex-col gap-3 w-full h-screen bg-white p-5 rounded-b-2xl">
             <div className="bg-gradient-to-br from-white to-slate-50 flex flex-col gap-5 shadow-lg rounded-2xl p-4">
-                <div className="bg-gradient-to-b from-gray-200 to-gray-50 flex flex-col gap-4 rounded-2xl shadow-lg">
+                <div className="bg-gradient-to-b from-gray-200 to-gray-50 flex flex-col gap-4 rounded-2xl shadow-lg md:w-full">
                     <div className="mt-3"></div>
 
                     <div className="m-0.5 text-center">

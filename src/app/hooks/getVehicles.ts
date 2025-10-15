@@ -4,7 +4,7 @@ import { Vehicle } from "../types/vehicles";
 
 export function useGetVehicles() {
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-    const [loadingVehicles, setLoadingVehicles] = useState<boolean>()
+    const [loadingVehicles, setLoadingVehicles] = useState<boolean | null>(null)
 
     useEffect(() => {
         async function getVehicles() {

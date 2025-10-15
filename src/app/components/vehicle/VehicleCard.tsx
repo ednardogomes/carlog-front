@@ -1,21 +1,22 @@
 import { Maintenance } from "@/app/types/maintenance";
+import { useCallback } from "react";
 
-export default function VehicleCard({ data, loading, maintenances_count }: { data: any, loading: boolean | undefined, maintenances_count: Maintenance[] }) {
+export default function VehicleCard({ data, loading, maintenances_count, isSelect, onSelect }: { data: any, loading: boolean | null, maintenances_count: Maintenance[], isSelect: boolean, onSelect: (id: string) => void }) {
+    if (data.length === 0) {
+        return <div className="p-4 text-center text-slate-500">Nenhum veículo encontrado.</div>;
+    }
+
+    const handleClick = useCallback(() => {
+        onSelect(data.id)
+    }, [onSelect, data.id])
     return (
-        <div className=" bg-gray-100 flex justify-between items-center shadow-lg rounded-2xl p-4">
+        <div
+            onClick={handleClick}
+            className={`flex justify-between items-center p-4 ${isSelect ? "bg-white rounded-lg" : "border-none"}`}
+        >
             <div className="p-2 bg-gray-200 content-center text-center rounded-2xl">
                 <p className="font-medium text-[25px]">{data.make}</p>
             </div>
-            {/* <div>
-                {vehicles.map((vehicle, index) =>
-                    <p key={index}>
-                        <span>
-                            {vehicle.make} {vehicle.model} - {vehicle.model_year}
-                        </span>
-                    </p>
-
-                )}
-            </div> */}
             <div>
                 <p><span>{data.make} {data.model}</span> - <span>{data.model_year}</span></p>
                 <p>{data.license_plate}</p>

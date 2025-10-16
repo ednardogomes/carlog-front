@@ -5,7 +5,7 @@ import { Vehicle } from "@/app/types/vehicles";
 export default function VehicleListCard({ vehicles, loading, selectedVehicleId, onSelect }: { vehicles: Vehicle[], loading: boolean | null, selectedVehicleId: string | null, onSelect: (id: string) => void }) {
     return (
 
-        <div className={`flex flex-col gap-3 p-4 md:p-6 max-h-[60vh] overflow-auto`}>
+        <div className={`flex flex-col gap-3 p-4 md:p-6 h-[30rem] overflow-auto`}>
             <h1 className="p-3 text-[1.3rem] text-gray-500">Veículos</h1>
 
             {vehicles.map((vehicle) =>

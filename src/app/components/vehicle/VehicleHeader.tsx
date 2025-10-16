@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function VehicleHeader() {
     const [query, setQuery] = useState('')
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mb-3">
             <div className="flex flex-col items-center mb-6">
                 <h1 className="text-2xl font-semibold">Manutenação de Veículos</h1>
                 <p className="text-sm text-slate-500">Registre e acompanhe serviços por veículos</p>

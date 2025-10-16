@@ -8,17 +8,17 @@ export default function VehicleInfoCard(
     { vehicle, loading, maintenances }: { vehicle: Vehicle | null, loading: boolean | null, maintenances: Maintenances[] | null }) {
     console.log(vehicle?.maintenances?.[0]);
     return (
-        <div className="flex flex-col gap-3 w-full h-screen bg-white p-5 rounded-b-2xl">
-            <div className="bg-gradient-to-br from-white to-slate-50 flex flex-col gap-5 shadow-lg rounded-2xl p-4">
-                <div className="bg-gradient-to-b from-gray-200 to-gray-50 flex flex-col gap-4 rounded-2xl shadow-lg md:w-full">
+        <div className="flex flex-col gap-3 w-full bg-white p-5 rounded-b-2xl md:rounded-none">
+            <div className="bg-gradient-to-br from-white to-slate-50 flex flex-col md:flex-row gap-5 shadow-lg rounded-2xl p-4">
+                <div className="bg-gradient-to-b from-gray-200 to-gray-50 flex flex-col w-full h-[60vh] md:h-[49vh] lg:h-[50vh] gap-4 rounded-2xl shadow-lg">
                     <div className="mt-3"></div>
 
-                    <div className="m-0.5 text-center">
+                    <div className="m-0.5 text-center w-full h-full">
                         {loading ? <VehicleSkeleton /> : "Veículo sem foto"}
                     </div>
 
-                    <div className="p-4 bg-slate-50 rounded-b-2xl">
-                        <div className="flex items-start justify-between">
+                    <div className="p-4 bg-slate-50 rounded-b-2xl w-full h-full">
+                        <div className="flex items-start justify-between mt-10">
                             <div>
                                 <p className="font-semibold text-lg">{`${vehicle?.make ?? ''}${vehicle?.model ?? ''} - ${vehicle?.model_year ?? ''}`}</p>
                                 <p className="text-xs text-slate-400">{`${vehicle?.license_plate ?? ''}`}</p>

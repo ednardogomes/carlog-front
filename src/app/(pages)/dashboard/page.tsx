@@ -20,7 +20,7 @@ export default function Dashboard() {
 
     const selectedVehicle = vehicles.find(vehicle => vehicle.id === selectedVehicleId) || null;
     return (
-        <div className="min-h-screen max-w-6xl mx-auto bg-slate-50 text-slate-900 p-4 md:p-8">
+        <div className="min-h-full max-w-6xl mx-auto text-slate-900 p-4 md:p-3">
             <VehicleHeader />
             <div className="shadow-2xl rounded-2xl md:flex">
                 <VehicleListCard

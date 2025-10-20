@@ -9,7 +9,7 @@ export default function VehicleInfoCard(
     console.log(vehicle?.maintenances?.[0]);
     return (
         <div className="flex flex-col gap-3 w-full h-full">
-            <div className="bg-gradient-to-br from-white to-slate-50 h-[80vh] flex flex-col md:flex-row gap-5 p-4">
+            <div className="bg-gradient-to-br from-white to-slate-50 h-[auto] flex flex-col md:flex-row gap-5 p-4">
                 <div className="bg-gradient-to-b from-gray-200 to-gray-50 flex flex-col w-full h-[60vh] md:h-full gap-4 rounded-2xl shadow-lg">
                     <div className="mt-3"></div>
 

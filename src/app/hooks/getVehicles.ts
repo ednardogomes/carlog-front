@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { getVehiclesService } from "../services/vehicleService";
 import { Vehicle } from "../types/vehicles";
 
-export function useGetVehicles() {
+interface UseVehiclesResult {
+    vehicles: Vehicle[];
+    loadingVehicles: boolean | null;
+}
+
+export function useGetVehicles(): UseVehiclesResult {
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
     const [loadingVehicles, setLoadingVehicles] = useState<boolean | null>(null)
 

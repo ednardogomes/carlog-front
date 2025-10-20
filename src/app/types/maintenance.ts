@@ -3,7 +3,7 @@ export type Maintenances = {
     vehicle_id: string;
     km: string;
     service: string;
-    cost: number;
+    cost: string;
     maintenance_date: string;
     description: string;
 }

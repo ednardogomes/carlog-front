@@ -1,4 +1,4 @@
-import { Maintenance } from "./maintenance";
+import { Maintenances } from "./maintenance";
 
 export type Vehicle = {
     id: string;
@@ -7,5 +7,5 @@ export type Vehicle = {
     model_year: string;
     color: string;
     license_plate: string;
-    maintenances: Maintenance[]
+    maintenances: Maintenances[]
 }

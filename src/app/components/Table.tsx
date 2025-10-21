@@ -8,7 +8,7 @@ const getDeepValue = (obj: any[], path: string) => {
     return keys.reduce((current: any, key) => (current && current[key] !== undefined) ? current[key] : undefined, obj);
 };
 
-export function Table({ data, columns, loading }: { data: any[]; columns: TabeType[], loading: boolean | undefined }) {
+export function Table({ data, columns, loading }: { data: any[]; columns: TabeType[], loading?: boolean | undefined }) {
     if (loading) {
         console.log('carregando dados');
     }

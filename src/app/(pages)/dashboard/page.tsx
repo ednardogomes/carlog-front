@@ -24,7 +24,6 @@ export default function Dashboard() {
     const changeOpen = () => {
         setOpen(!open);
     }
-    console.log(open);
 
     const selectedVehicle = vehicles.find(vehicle => vehicle.id === selectedVehicleId) || null;
     return (

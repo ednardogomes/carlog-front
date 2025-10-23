@@ -1,7 +1,7 @@
-import { Maintenance } from "@/app/types/maintenance";
+import { Maintenances } from "@/app/types/maintenance";
 import { useCallback } from "react";
 
-export default function VehicleCard({ data, loading, maintenances_count, isSelect, onSelect }: { data: any, loading: boolean | null, maintenances_count: Maintenance[], isSelect: boolean, onSelect: (id: string) => void }) {
+export default function VehicleCard({ data, loading, maintenances_count, isSelect, onSelect }: { data: any, loading: boolean | null, maintenances_count: Maintenances[], isSelect: boolean, onSelect: (id: string) => void }) {
     if (data.length === 0) {
         return <div className="p-4 text-center text-slate-500">Nenhum veículo encontrado.</div>;
     }

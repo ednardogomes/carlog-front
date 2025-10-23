@@ -2,7 +2,7 @@
 import { Search } from 'lucide-react';
 import { useState } from "react"
 
-export default function VehicleHeader({ updateOpen }: { updateOpen?: () => void }) {
+export default function VehicleHeader({ openForm }: { openForm?: () => void }) {
     const [query, setQuery] = useState('')
     return (
         <div className="flex flex-col items-center mb-3">
@@ -21,7 +21,7 @@ export default function VehicleHeader({ updateOpen }: { updateOpen?: () => void 
                     />
                 </div>
                 <button
-                    onClick={updateOpen}
+                    onClick={openForm}
                     className='bg-emerald-600 text-white px-4 py-2 rounded-md shadow-sm text-sm cursor-pointer'>Novo Veículo</button>
             </div>
         </div>

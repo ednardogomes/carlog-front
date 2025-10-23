@@ -12,6 +12,7 @@ export default function Dashboard() {
 
     const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
     const [open, setOpen] = useState<boolean>(false);
+    const [isCreating, setIsCreating] = useState<boolean>(false);
 
 
     const { maintenances, loadingMaintenances } = useGetMaintenanceByVehicle(selectedVehicleId);
@@ -21,6 +22,11 @@ export default function Dashboard() {
         console.log(`Vehicle selected: ${vehicleId}`);
     }, []);
 
+    const handleCreateNewVehicle = () => {
+        setIsCreating(true);
+        setOpen(true);
+    }
+
     const changeOpen = () => {
         setOpen(!open);
     }
@@ -28,7 +34,7 @@ export default function Dashboard() {
     const selectedVehicle = vehicles.find(vehicle => vehicle.id === selectedVehicleId) || null;
     return (
         <div className="min-h-full max-w-6xl mx-auto text-slate-900 p-4 md:p-3">
-            <VehicleHeader updateOpen={changeOpen} />
+            <VehicleHeader openForm={handleCreateNewVehicle} />
             <div className="shadow-2xl rounded-2xl md:flex">
                 <VehicleListCard
                     vehicles={vehicles}
@@ -42,7 +48,7 @@ export default function Dashboard() {
                     loading={loadingVehicles}
                     maintenances={maintenances}
                 />
-                <VehicleForm open={open} updateOpen={changeOpen} />
+                <VehicleForm open={open} updateOpen={changeOpen} vehicle={selectedVehicle} isCreating={isCreating} />
             </div>
         </div>
     )

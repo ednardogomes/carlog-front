@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getVehiclesService } from "../services/vehicleService";
-import { Vehicle } from "../types/vehicles";
+import { Vehicles } from "../types/vehicles";
 
 interface UseVehiclesResult {
-    vehicles: Vehicle[];
+    vehicles: Vehicles[];
     loadingVehicles: boolean | null;
+    refetchVehicles: () => Promise<void>;
 }
 
 export function useGetVehicles(): UseVehiclesResult {
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [vehicles, setVehicles] = useState<Vehicles[]>([]);
     const [loadingVehicles, setLoadingVehicles] = useState<boolean | null>(null)
 
-    useEffect(() => {
-        async function getVehicles() {
-            try {
-                setLoadingVehicles(true)
-                const data = await getVehiclesService();
-                setVehicles(data)
-            } catch (error) {
-                console.error("Error ao buscar veículos:", error);
-                throw error;
-            } finally {
-                setLoadingVehicles(false)
-            }
+    const refetchVehicles = useCallback(async () => {
+        try {
+            setLoadingVehicles(true)
+            const data = await getVehiclesService();
+            setVehicles(data)
+        } catch (error) {
+            console.error("Error ao buscar veículos:", error);
+            throw error;
+        } finally {
+            setLoadingVehicles(false)
         }
-        getVehicles();
-    }, []
-    )
-    return { vehicles, loadingVehicles }
+    }, []);
+    useEffect(() => {
+        refetchVehicles();
+    }, [refetchVehicles]);
+    return { vehicles, loadingVehicles, refetchVehicles };
 }

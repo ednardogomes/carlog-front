@@ -1,13 +1,23 @@
 'use client'
 import VehicleSkeleton from "@/app/skeletons/VehicleSkeleton";
-import { Vehicle } from "@/app/types/vehicles";
+import { Vehicles } from "@/app/types/vehicles";
 import Maintenance from "../maintenance/Maintenance";
 import { formateToBr } from "@/app/utils/formatDate";
 import type { Maintenances } from "@/app/types/maintenance";
+import useExcludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
+import { MessageHandler } from "@/app/types/message";
 
 export default function VehicleInfoCard(
-    { vehicle, loading, maintenances }: { vehicle: Vehicle | null, loading: boolean | null, maintenances: Maintenances[] | null }) {
+    { vehicle, loading, maintenances, handleForm, message }
+        :
+        { vehicle: Vehicles | undefined, loading: boolean | null, handleForm: () => void, maintenances: Maintenances[] | null, message: MessageHandler }) {
     const totalCost = maintenances?.reduce((total, maintenance) => total + parseFloat(maintenance.cost), 0).toFixed(2) || 0;
+
+    const handleExcludeVehicle = async (
+        id: string | undefined) => {
+        await useExcludeVehicle(id, message);
+    }
+
     return (
         <div className="flex flex-col gap-3 w-full h-full">
             <div className="bg-gradient-to-br from-white to-slate-50 h-[auto] flex flex-col md:flex-row gap-5 p-4">
@@ -27,9 +37,18 @@ export default function VehicleInfoCard(
                             <p className="text-slate-500">{`${vehicle?.maintenances.length ?? ''}`}</p>
                         </div>
 
-                        <div className="mt-4 flex gap-2">
-                            <button className="flex-1 py-2 rounded-md border border-slate-200 bg-white text-sm shadown-sm">Editar Veículo</button>
-                            <button className="py-2 px-3 rounded-md bg-red-50 text-red-600 text-sm border border-red-100">Excluir</button>
+                        <div className={`mt-4 flex gap-2`}>
+                            <button
+                                onClick={handleForm}
+                                className={`flex-1 py-2 rounded-md border border-slate-200 bg-white text-sm shadown-sm ${vehicle ?? 'opacity-50 hover:cursor-not-allowed'}`} disabled={!vehicle}    >
+                                Editar Veículo
+                            </button>
+
+                            <button
+                                onClick={() => handleExcludeVehicle(vehicle?.id)}
+                                className={`py-2 px-3 rounded-md bg-red-50 text-red-600 text-sm border border-red-100 ${vehicle ?? 'opacity-50 hover:cursor-not-allowed'}`} disabled={!vehicle}    >
+                                Excluir
+                            </button>
                         </div>
                     </div>
 

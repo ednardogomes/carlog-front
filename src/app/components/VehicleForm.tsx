@@ -1,13 +1,54 @@
 'use client'
-import { useForm, SubmitHandler } from "react-hook-form"
-import { UpdateVehicle } from "../types/vehicles";
-import { useState } from "react";
+import { useForm, SubmitHandler, } from "react-hook-form"
+import { UpdateVehicle, Vehicle, Vehicles } from "../types/vehicles";
+import { useEffect, useState } from "react";
+import { updateVehicleService } from "../services/vehicleService";
+import { MessageHandler } from "../types/message";
+import useCreateVehicle from "../hooks/vehicle/createVehicle";
+import { AxiosError } from "axios";
+import useUpdateVehicle from "../hooks/vehicle/updateVehicle";
 
-export default function VehicleForm({ vehicle, open, isCreating, updateOpen }: { vehicle?: UpdateVehicle | null, open: boolean, isCreating: boolean, updateOpen?: () => void }) {
-    const { register, handleSubmit, formState: { errors } } = useForm<UpdateVehicle>();
-    const onSubmit: SubmitHandler<UpdateVehicle> = (vehicle) => console.log(vehicle)
+export default function VehicleForm({
+    vehicle, open, isCreating, updateOpen, message
+}: {
+    vehicle?: Vehicle | undefined, open: boolean, isCreating: boolean, updateOpen?: () => void, message: MessageHandler
+}) {
+    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<Vehicles>();
+    const [loading, setLoading] = useState<boolean>(false);
 
+    const handleUpdateVehicle = async (vehicle: UpdateVehicle) => {
+        try {
+            const response = await updateVehicleService(vehicle);
+            message({ type: 'success', message: `${response}` });
+            return response;
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                message({ type: 'error', message: error.response?.data?.message });
+            }
+            return 'Erro interno ao criar veículo';
+        }
+    }
 
+    const onSubmit: SubmitHandler<Vehicles> = async (vehicle) => {
+        if (isCreating) {
+            await useCreateVehicle(vehicle, message);
+        }
+        if (!isCreating) {
+            await useUpdateVehicle(vehicle, message);
+        }
+        updateOpen && updateOpen();
+        reset();
+    }
+    useEffect(() => {
+        reset()
+        if (!isCreating) {
+            reset(vehicle || undefined);
+        }
+        if (!open) {
+            reset({});
+        }
+
+    }, [vehicle, reset, isCreating, open]);
     return (
         <form className={`${open ? "fixed inset-0 z-50 flex items-center justify-center bg-black/30 " : "hidden"}`} >
             <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-xl lg:w-2xl">

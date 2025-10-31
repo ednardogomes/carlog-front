@@ -1,6 +1,6 @@
 import { Vehicle } from "@/app/types/vehicles";
 
-export default function Maintenance({ vehicle }: { vehicle: Vehicle | null }) {
+export default function Maintenance({ vehicle }: { vehicle: Vehicle | undefined }) {
     const hasNoMaintenance = vehicle?.maintenances.length === 0
     return (
         <div className="lg:col-span-2 w-full">

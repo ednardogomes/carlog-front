@@ -1,11 +1,9 @@
 'use client'
 import { useForm, SubmitHandler, } from "react-hook-form"
-import { UpdateVehicle, Vehicle, Vehicles } from "../types/vehicles";
+import { Vehicle, Vehicles } from "../types/vehicles";
 import { useEffect, useState } from "react";
-import { updateVehicleService } from "../services/vehicleService";
 import { MessageHandler } from "../types/message";
 import useCreateVehicle from "../hooks/vehicle/createVehicle";
-import { AxiosError } from "axios";
 import useUpdateVehicle from "../hooks/vehicle/updateVehicle";
 
 export default function VehicleForm({
@@ -15,19 +13,6 @@ export default function VehicleForm({
 }) {
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<Vehicles>();
     const [loading, setLoading] = useState<boolean>(false);
-
-    const handleUpdateVehicle = async (vehicle: UpdateVehicle) => {
-        try {
-            const response = await updateVehicleService(vehicle);
-            message({ type: 'success', message: `${response}` });
-            return response;
-        } catch (error) {
-            if (error instanceof AxiosError) {
-                message({ type: 'error', message: error.response?.data?.message });
-            }
-            return 'Erro interno ao criar veículo';
-        }
-    }
 
     const onSubmit: SubmitHandler<Vehicles> = async (vehicle) => {
         if (isCreating) {

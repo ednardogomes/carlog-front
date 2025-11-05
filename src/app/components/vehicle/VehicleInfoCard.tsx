@@ -4,7 +4,7 @@ import { Vehicles } from "@/app/types/vehicles";
 import Maintenance from "../maintenance/Maintenance";
 import { formateToBr } from "@/app/utils/formatDate";
 import type { Maintenances } from "@/app/types/maintenance";
-import useExcludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
+import excludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
 import { MessageHandler } from "@/app/types/message";
 
 export default function VehicleInfoCard(
@@ -32,7 +32,7 @@ export default function VehicleInfoCard(
 
     const handleExcludeVehicle = async (
         id: string | undefined) => {
-        await useExcludeVehicle(id, message);
+        await excludeVehicle(id, message);
     }
 
     return (

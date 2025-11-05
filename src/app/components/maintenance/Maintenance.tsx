@@ -1,4 +1,4 @@
-import useExcludeMaintenance from "@/app/hooks/maintenance/excludeMaintenance";
+import excludeMaintenance from "@/app/hooks/maintenance/excludeMaintenance";
 import { MessageHandler } from "@/app/types/message";
 import { Vehicle } from "@/app/types/vehicles";
 import { formateToBr } from "@/app/utils/formatDate";
@@ -20,7 +20,7 @@ export default function Maintenance({
     const hasNoMaintenance = vehicle?.maintenances.length === 0
 
     const handleExclude = async (id: string | null, message: MessageHandler) => {
-        await useExcludeMaintenance(id, message)
+        await excludeMaintenance(id, message)
     }
 
     return (

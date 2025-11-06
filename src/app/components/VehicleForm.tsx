@@ -3,8 +3,8 @@ import { useForm, SubmitHandler, } from "react-hook-form"
 import { Vehicle, Vehicles } from "../types/vehicles";
 import { useEffect, useState } from "react";
 import { MessageHandler } from "../types/message";
-import useCreateVehicle from "../hooks/vehicle/createVehicle";
-import useUpdateVehicle from "../hooks/vehicle/updateVehicle";
+import createVehicle from "../hooks/vehicle/createVehicle";
+import updateVehicle from "../hooks/vehicle/updateVehicle";
 
 export default function VehicleForm({
     vehicle, open, isCreating, updateOpen, message
@@ -16,10 +16,10 @@ export default function VehicleForm({
 
     const onSubmit: SubmitHandler<Vehicles> = async (vehicle) => {
         if (isCreating) {
-            await useCreateVehicle(vehicle, message);
+            await createVehicle(vehicle, message);
         }
         if (!isCreating) {
-            await useUpdateVehicle(vehicle, message);
+            await updateVehicle(vehicle, message);
         }
         updateOpen && updateOpen();
         reset();

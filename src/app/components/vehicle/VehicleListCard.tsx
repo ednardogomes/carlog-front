@@ -1,8 +1,8 @@
 'use client'
 import VehicleCard from "./VehicleCard";
-import { Vehicle } from "@/app/types/vehicles";
+import { Vehicles } from "@/app/types/vehicles";
 
-export default function VehicleListCard({ vehicles, loading, selectedVehicleId, onSelect }: { vehicles: Vehicle[], loading: boolean | null, selectedVehicleId: string | null, onSelect: (id: string) => void }) {
+export default function VehicleListCard({ vehicles, loading, selectedVehicleId, onSelect }: { vehicles: Vehicles[], loading: boolean | null, selectedVehicleId: string | null, onSelect: (id: string) => void }) {
     return (
 
         <div className={`flex flex-col gap-3 p-4 md:p-6 h-full overflow-auto`}>

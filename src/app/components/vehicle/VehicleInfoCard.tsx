@@ -4,18 +4,35 @@ import { Vehicles } from "@/app/types/vehicles";
 import Maintenance from "../maintenance/Maintenance";
 import { formateToBr } from "@/app/utils/formatDate";
 import type { Maintenances } from "@/app/types/maintenance";
-import useExcludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
+import excludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
 import { MessageHandler } from "@/app/types/message";
 
 export default function VehicleInfoCard(
-    { vehicle, loading, maintenances, handleForm, message }
+    {
+        vehicle,
+        loading,
+        maintenances,
+        handleVehicleForm,
+        handleMaintenanceForm,
+        handleCreateMaintenanceForm,
+        message
+    }
         :
-        { vehicle: Vehicles | undefined, loading: boolean | null, handleForm: () => void, maintenances: Maintenances[] | null, message: MessageHandler }) {
-    const totalCost = maintenances?.reduce((total, maintenance) => total + parseFloat(maintenance.cost), 0).toFixed(2) || 0;
+        {
+            vehicle: Vehicles | undefined,
+            loading: boolean | null,
+            handleVehicleForm: () => void,
+            handleMaintenanceForm: (id: string | null) => void,
+            handleCreateMaintenanceForm: () => void,
+            maintenances: Maintenances[] | null,
+            message: MessageHandler
+        }) {
+
+    const totalCost = maintenances?.reduce((total, maintenance) => total + parseFloat(String(maintenance.cost)), 0).toFixed(2) || 0;
 
     const handleExcludeVehicle = async (
         id: string | undefined) => {
-        await useExcludeVehicle(id, message);
+        await excludeVehicle(id, message);
     }
 
     return (
@@ -39,7 +56,7 @@ export default function VehicleInfoCard(
 
                         <div className={`mt-4 flex gap-2`}>
                             <button
-                                onClick={handleForm}
+                                onClick={handleVehicleForm}
                                 className={`flex-1 py-2 rounded-md border border-slate-200 bg-white text-sm shadown-sm ${vehicle ?? 'opacity-50 hover:cursor-not-allowed'}`} disabled={!vehicle}    >
                                 Editar Veículo
                             </button>
@@ -68,7 +85,12 @@ export default function VehicleInfoCard(
 
                 </div>
 
-                <Maintenance vehicle={vehicle} />
+                <Maintenance
+                    vehicle={vehicle}
+                    message={message}
+                    handleForm={handleMaintenanceForm}
+                    handleFormCreate={handleCreateMaintenanceForm}
+                />
             </div>
         </div>
     )

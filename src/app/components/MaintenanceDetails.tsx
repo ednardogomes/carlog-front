@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
 import { getMaintenancesService } from "../services/maintenanceService"
-import { Maintenance } from "../types/maintenance";
+import { Maintenances } from "../types/maintenance";
 import { Table } from "./Table";
 
 export default function MaintenanceDetails() {
@@ -15,7 +15,7 @@ export default function MaintenanceDetails() {
         { column: 'Descrição', row: 'description' },
     ]
 
-    const [maintenances, setMaintenances] = useState<Maintenance[]>([]);
+    const [maintenances, setMaintenances] = useState<Maintenances[]>([]);
 
 
     useEffect(() => {

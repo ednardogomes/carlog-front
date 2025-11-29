@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Maintenance } from "../types/maintenance";
-import { getMaintenancesByVehicleService } from "../services/maintenanceService";
+import { Maintenances } from "../../types/maintenance";
+import { getMaintenancesByVehicleService } from "../../services/maintenanceService";
 
-export default function useGetMaintenanceByVehicle(vehicleId: string) {
-    const [maintenances, setMaintenances] = useState<Maintenance[]>([])
+export default function useGetMaintenanceByVehicle(vehicleId: string | null) {
+    const [maintenances, setMaintenances] = useState<Maintenances[] | null>([])
     const [loadingMaintenances, setLoadingMaintenances] = useState<boolean>()
 
     useEffect(() => {
+        if (!vehicleId) {
+            return
+        }
         async function getMaintenancesByVehicle() {
             try {
                 setLoadingMaintenances(true)
@@ -19,6 +22,6 @@ export default function useGetMaintenanceByVehicle(vehicleId: string) {
             }
         }
         getMaintenancesByVehicle()
-    })
-    return [maintenances, loadingMaintenances]
+    }, [vehicleId])
+    return { maintenances, loadingMaintenances }
 }

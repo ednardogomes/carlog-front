@@ -13,13 +13,12 @@ export const getMaintenancesByVehicleService = async (vehicleId: string | null) 
 }
 
 export const createMaintenanceService = async (vehicle_id: string | null, data: CreateMaintenance) => {
-    const { description, ...maintenanceData } = data
-    const response = await api.post(`maintenance/${vehicle_id}`, maintenanceData)
+    const response = await api.post(`maintenance/${vehicle_id}`, data)
     return response.data;
 }
 
 export const updateMaintenanceService = async (data: UpdateMaintenance) => {
-    const { id, description, ...maintenanceData } = data
+    const { id, ...maintenanceData } = data
     const response = await api.put(`maintenance/${id}`, maintenanceData)
     return response.data;
 }

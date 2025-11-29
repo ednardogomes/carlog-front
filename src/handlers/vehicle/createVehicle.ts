@@ -1,7 +1,6 @@
-import { AxiosError } from "axios";
-import { createVehicleService } from "../../services/vehicleService";
-import { MessageHandler } from "../../types/message";
-import { CreateVehicle } from "../../types/vehicles";
+import { createVehicleService } from "../../app/services/vehicleService";
+import { MessageHandler } from "../../app/types/message";
+import { CreateVehicle } from "../../app/types/vehicles";
 
 export default async function createVehicle(vehicle: CreateVehicle, message: MessageHandler) {
     try {

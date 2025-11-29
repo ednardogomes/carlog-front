@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { getVehiclesService } from "../../services/vehicleService";
-import { Vehicles } from "../../types/vehicles";
+import { getVehiclesService } from "../services/vehicleService";
+import { Vehicles } from "../types/vehicles";
 
 interface UseVehiclesResult {
     vehicles: Vehicles[];

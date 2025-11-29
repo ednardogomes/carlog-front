@@ -4,7 +4,7 @@ import { Vehicles } from "@/app/types/vehicles";
 import Maintenance from "../maintenance/Maintenance";
 import { formateToBr } from "@/app/utils/formatDate";
 import type { Maintenances } from "@/app/types/maintenance";
-import excludeVehicle from "@/app/hooks/vehicle/excludeVehicle";
+import excludeVehicle from "@/handlers/vehicle/excludeVehicle";
 import { MessageHandler } from "@/app/types/message";
 
 export default function VehicleInfoCard(

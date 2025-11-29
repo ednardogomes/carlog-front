@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Maintenances } from "../../types/maintenance";
-import { getMaintenancesByVehicleService } from "../../services/maintenanceService";
+import { Maintenances } from "../types/maintenance";
+import { getMaintenancesByVehicleService } from "../services/maintenanceService";
 
 export default function useGetMaintenanceByVehicle(vehicleId: string | null) {
     const [maintenances, setMaintenances] = useState<Maintenances[] | null>([])

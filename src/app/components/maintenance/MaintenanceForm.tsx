@@ -1,6 +1,6 @@
 'use client'
-import createMaintenance from "@/app/hooks/maintenance/createMaintenance";
-import updateMaintenance from "@/app/hooks/maintenance/updateMaintenance";
+import createMaintenance from "@/handlers/maintenance/createMaintenance";
+import updateMaintenance from "@/handlers/maintenance/updateMaintenance";
 import { Maintenances, UpdateMaintenance } from "@/app/types/maintenance";
 import { MessageHandler } from "@/app/types/message";
 import { applyDateMask, formateToBr, formatToISODate } from "@/app/utils/formatDate";

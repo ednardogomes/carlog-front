@@ -1,5 +1,5 @@
-import { deleteVehicleService } from "../../services/vehicleService";
-import { MessageHandler } from "../../types/message";
+import { deleteVehicleService } from "../../app/services/vehicleService";
+import { MessageHandler } from "../../app/types/message";
 
 export default async function excludeVehicle(id: string | undefined, message: MessageHandler) {
     try {

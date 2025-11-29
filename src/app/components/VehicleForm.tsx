@@ -3,8 +3,8 @@ import { useForm, SubmitHandler, } from "react-hook-form"
 import { Vehicle, Vehicles } from "../types/vehicles";
 import { useEffect, useState } from "react";
 import { MessageHandler } from "../types/message";
-import createVehicle from "../hooks/vehicle/createVehicle";
-import updateVehicle from "../hooks/vehicle/updateVehicle";
+import createVehicle from "../../handlers/vehicle/createVehicle";
+import updateVehicle from "../../handlers/vehicle/updateVehicle";
 
 export default function VehicleForm({
     vehicle, open, isCreating, updateOpen, message

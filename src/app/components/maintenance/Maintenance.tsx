@@ -1,4 +1,4 @@
-import excludeMaintenance from "@/app/hooks/maintenance/excludeMaintenance";
+import excludeMaintenance from "@/handlers/maintenance/excludeMaintenance";
 import { MessageHandler } from "@/app/types/message";
 import { Vehicle } from "@/app/types/vehicles";
 import { formateToBr } from "@/app/utils/formatDate";

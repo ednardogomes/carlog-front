@@ -6,8 +6,8 @@ import VehicleInfoCard from "@/app/components/vehicle/VehicleInfoCard";
 import VehicleListCard from "@/app/components/vehicle/VehicleListCard";
 import VehicleForm from "@/app/components/VehicleForm";
 import { useAlert } from "@/app/hooks/alert";
-import useGetMaintenanceByVehicle from "@/app/hooks/maintenance/getMaintenanceByVehicle";
-import { useGetVehicles } from "@/app/hooks/vehicle/getVehicles";
+import useGetMaintenanceByVehicle from "@/app/hooks/getMaintenanceByVehicle";
+import { useGetVehicles } from "@/app/hooks/getVehicles";
 import { Message } from "@/app/types/message";
 import { useCallback, useEffect, useState } from "react";
 
